@@ -119,7 +119,6 @@ res.sendFile(__path + '/tmp/image.mp4')
 res.json({ data: e })
 }
 })
-}
 
 router.get('/quotes', async (req, res, next) => {
 try {
