@@ -70,7 +70,7 @@ creator: creator,
 result 
 })
 } catch (e) {
-res.sendFile(__path + '/assets/404.html')==
+res.sendFile(__path + '/assets/404.html')
 }
 })
 
