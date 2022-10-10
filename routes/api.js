@@ -109,12 +109,13 @@ url: data.links[2].a || ''
         })
       })
    })
+}
 var img = await fetch(medias.nowm.url)
 var getBuffer = await img.buffer()
 await fs.writeFileSync(__path + '/tmp/image.mp4', getBuffer)
 res.sendFile(__path + '/tmp/image.mp4')
 } catch (e) {
-res.json({ e })
+res.json({ data: e })
 }
 })
 }
