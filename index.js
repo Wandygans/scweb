@@ -1,7 +1,6 @@
 var express = require('express'),
     cors = require('cors'),
     secure = require('ssl-express-www');
-const PORT = process.env.PORT || 8080 || 5000 || 3000
 var { color } = require('./lib/color.js')
 
 var mainrouter = require('./routes/main')
@@ -17,8 +16,8 @@ app.use(express.static("assets"))
 app.use('/', mainrouter)
 app.use('/page', apirouter)
 
-app.listen(PORT, () => {
-    console.log(color("Server running on port " + PORT,'green'))
-})
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 module.exports = app
