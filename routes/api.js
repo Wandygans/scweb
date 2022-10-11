@@ -77,7 +77,13 @@ res.sendFile(__path + '/assets/404.html')
 router.get('/tiktok', async (req, res, next) => {
 var query = req.query.query
 if (!query) res.json(loghandler.query)
-	
+
+const clean = (data) => {
+let regex = /(<([^>]+)>)/ig
+data = data.replace(/(<br?\s?\/>)/ig, ' \n')
+return data.replace(regex, '')
+}
+
 async function tiktok(query) {
 return new Promise((resolve, reject) => {
 axios("https://lovetik.com/api/ajax/search", {
