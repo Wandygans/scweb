@@ -110,6 +110,7 @@ url: data.links[2].a || ''
       })
    })
 }
+try {
 result = await tiktok(query)
 var img = await fetch(reuslt.medias.nowm.url)
 var getBuffer = await img.buffer()
