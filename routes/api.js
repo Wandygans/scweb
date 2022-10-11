@@ -77,6 +77,7 @@ res.sendFile(__path + '/assets/404.html')
 router.get('/tiktok', async (req, res, next) => {
 var query = req.query.query
 if (!query) res.json(loghandler.query)
+	
 async function tiktok(query) {
 return new Promise((resolve, reject) => {
 axios("https://lovetik.com/api/ajax/search", {
@@ -110,6 +111,7 @@ url: data.links[2].a || ''
       })
    })
 }
+
 try {
 result = await tiktok(query)
 var img = await fetch(reuslt.medias.nowm.url)
@@ -120,7 +122,7 @@ res.sendFile(__path + '/tmp/image.mp4')
 res.json({ e })
 }
 })
-}
+})
 
 router.get('/quotes', async (req, res, next) => {
 try {
