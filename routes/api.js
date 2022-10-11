@@ -78,12 +78,6 @@ router.get('/tiktok', async (req, res, next) => {
 var query = req.query.query
 if (!query) res.json(loghandler.query)
 
-const clean = (data) => {
-let regex = /(<([^>]+)>)/ig
-data = data.replace(/(<br?\s?\/>)/ig, ' \n')
-return data.replace(regex, '')
-}
-
 async function tiktok(query) {
 return new Promise((resolve, reject) => {
 axios("https://lovetik.com/api/ajax/search", {
@@ -96,9 +90,7 @@ resolve(data)
 return !0
 }
 resolve({
-desc: clean(data.desc),
-uploader: clean(data.author),
-thumbnail: data.cover,
+author: "WandyGans",
 medias: {
 nowm: {
 size: data.links[0].s || '',
@@ -107,10 +99,6 @@ url: data.links[0].a || ''
 watermark: {
 size: data.links[1].s || '',
 url: data.links[1].a || ''
-},
-audio: {
-sound: clean(data.links[2].s || ''),
-url: data.links[2].a || ''
 }
 }
         })
