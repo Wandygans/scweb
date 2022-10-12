@@ -21,7 +21,7 @@ res.sendFile(__path + '/view/404.html')
 })
 
 //vendors
-outer.get('/vendors/js/vendor.bundle.base.js', (req, res) => {
+router.get('/vendors/js/vendor.bundle.base.js', (req, res) => {
 res.sendFile(__path + '/vendors/js/vendor.bundle.base.js')
 
 })
