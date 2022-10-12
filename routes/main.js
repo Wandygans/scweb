@@ -10,10 +10,20 @@ router.get('/page', (req, res) => {
 res.sendFile(__path + '/view/index.html')
 })
 router.get('/tiktok', (req, res) => {
-res.sendFile(__path + '/public/tiktok.html')
+res.sendFile(__path + '/publc/tiktok.html')
 })
 router.get('/game.html', (req, res) => {
 res.sendFile(__path + '/view/game.html')
+})
+router.use(function (req, res) {
+res.status(404)
+res.sendFile(__path + '/view/404.html')
+})
+
+//vendors
+outer.get('/vendors/js/vendor.bundle.base.js', (req, res) => {
+res.sendFile(__path + '/vendors/js/vendor.bundle.base.js')
+
 })
 
 module.exports = router
