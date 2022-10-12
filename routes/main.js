@@ -15,9 +15,5 @@ res.sendFile(__path + '/public/tiktok.html')
 router.get('/game.html', (req, res) => {
 res.sendFile(__path + '/view/game.html')
 })
-router.use(function (req, res) {
-res.status(404)
-res.sendFile(__path + '/view/404.html')
-})
 
 module.exports = router
