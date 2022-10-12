@@ -112,7 +112,7 @@ async function tiktok(url){
 
 try {
 result = await tiktok(query)
-var img = await fetch(reuslt.media[1].url)
+var img = await fetch(result.media[1].url)
 var getBuffer = await img.buffer()
 await fs.writeFileSync(__path + '/tmp/image.mp4', getBuffer)
 res.sendFile(__path + '/tmp/image.mp4')
