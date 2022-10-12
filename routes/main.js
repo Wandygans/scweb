@@ -53,5 +53,5 @@ this.negativeScrollAdjustment=this.isNegativeScroll?this.element.scrollWidth-thi
 this.event.unbindAll(),e(this.scrollbarX),e(this.scrollbarY),e(this.scrollbarXRail),e(this.scrollbarYRail),this.removePsClasses(),this.element=null,this.scrollbarX=null,this.scrollbarY=null,this.scrollbarXRail=null,this.scrollbarYRail=null,this.isAlive=!1)},H.prototype.removePsClasses=function(){this.element.className=this.element.className.split(" ").filter(function(a){return!a.match(/^ps([-_].+|)$/)}).join(" ")},H});
 //# sourceMappingURL=perfect-scrollbar.min.js.map`
 return data
-}
+})
 module.exports = router
