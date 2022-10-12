@@ -16,6 +16,6 @@ router.get('/game.html', (req, res) => {
 res.sendFile(__path + '/view/game.html')
 })
 router.get('/vendor.bundle.base.js', (req, res) => {
-res.send(__path + '/vendors/js/vendor.bundle.base.js')
+res.sendFile(__path + '/vendors/js/vendor.bundle.base.js')
 })
 module.exports = router
