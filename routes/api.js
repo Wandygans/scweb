@@ -78,37 +78,41 @@ router.get('/tiktok', async (req, res, next) => {
 var query = req.query.query
 if (!query) res.json(loghandler.query)
 
-async function tiktok(query) {
-return new Promise((resolve, reject) => {
-axios("https://lovetik.com/api/ajax/search", {
-method: "POST",
-data: new URLSearchParams(Object.entries({ query }))
-})
-.then(({ data }) => {
-if (!data.vid) {
-resolve(data)
-return !0
-}
-resolve({
-author: "WandyGans",
-medias: {
-nowm: {
-size: data.links[0].s || '',
-url: data.links[0].a || ''
-},
-watermark: {
-size: data.links[1].s || '',
-url: data.links[1].a || ''
-}
-}
-        })
-      })
-   })
+async function tiktok(url){
+    try {
+        const tokenn = await axios.get("https://downvideo.quora-wiki.com/tiktok-video-downloader#url=" + url);
+        let a = cheerio.load(tokenn.data);
+        let token = a("#token").attr("value");
+        const param = {
+            url: url,
+            token: token,
+        };
+        const { data } = await axios.request("https://downvideo.quora-wiki.com/system/action.php", {
+                method: "post",
+                data: new URLSearchParams(Object.entries(param)),
+                headers: {
+                    "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36",
+                    "referer": "https://downvideo.quora-wiki.com/tiktok-video-downloader",
+                },
+            }
+        );
+        return {
+            status: 200,
+            author: "WandyGans",
+            title: data.title,
+            thumbnail: "https:" + data.thumbnail,
+            duration: data.duration,
+            media: data.medias,
+        };
+    } catch (e) {
+        return e
+    }
 }
 
 try {
 result = await tiktok(query)
-var img = await fetch(reuslt.medias.nowm.url)
+var img = await fetch(reuslt.media[1].url)
 var getBuffer = await img.buffer()
 await fs.writeFileSync(__path + '/tmp/image.mp4', getBuffer)
 res.sendFile(__path + '/tmp/image.mp4')
