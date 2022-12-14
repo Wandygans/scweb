@@ -3,6 +3,9 @@ __path = process.cwd()
 var express = require('express');
 var router = express.Router();
 
+router.get('/', (req, res) => {
+res.sendFile(__path + '/view/home.html')
+})
 router.get('/page', (req, res) => {
 res.sendFile(__path + '/view/index.html')
 })
