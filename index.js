@@ -14,7 +14,10 @@ app.use(cors())
 app.use(secure)
 app.use(express.static("assets"))
 
-app.use('/', mainrouter)
+
+app.get('/', (req, res) => {
+res.sendFile('view/home.html');
+});
 app.use('/api', apirouter)
 
 app.listen(PORT, () => {
