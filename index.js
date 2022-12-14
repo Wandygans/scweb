@@ -15,9 +15,7 @@ app.use(secure)
 app.use(express.static("assets"))
 
 
-app.get('/', (req, res) => {
-res.sendFile('view/home.html');
-});
+app.use('/', mainrouter)
 app.use('/api', apirouter)
 
 app.listen(PORT, () => {
